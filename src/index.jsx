@@ -9,6 +9,11 @@ import multi from 'redux-multi'
 import thunk from 'redux-thunk'
 import './styles/main.scss'
 
+
+if (process.env.NODE_ENV !== 'production') {
+  console.log('Looks like we are in development mode!');
+}
+
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
   && window.__REDUX_DEVTOOLS_EXTENSION__()
 
