@@ -1,0 +1,78 @@
+@import './config/reset';
+@import './config/mixins';
+@import './config/variables';
+@import './components/components';
+
+
+.btn-main {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  outline: 0;
+  border: 0;
+  margin: 0 1px 10px;
+  padding: 0 7px;
+  background: transparent;
+  color: #FFF !important;
+  font-size: 15px;
+  line-height: 47px;
+  vertical-align: middle;
+  cursor: pointer;
+
+  span {
+    display: block;
+    padding: 0 20px;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $primary;
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    content: "";
+    width: 11px;
+    height: 47px;
+    -webkit-transform: skew(-11deg,0);
+    -ms-transform: skew(-11deg,0);
+    transform: skew(-11deg,0);
+    background-color: $primary;
+  }
+
+  &:before {
+    left: 3px;
+  }
+
+  &:after {
+    right: 3px;
+  }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  background-color: $primary;
+  margin: 100px auto;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
+}

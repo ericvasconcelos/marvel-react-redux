@@ -1,0 +1,80 @@
+.heros {
+  display: block;
+  max-width: 900px;
+  width: 100%;
+  margin: 80px auto 40px;
+}
+
+.heros__title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.heros__list {
+  display: block;
+  border: 2px solid $light-gray;
+  margin-bottom: 40px;
+}
+
+.heros__list__item {
+  display: block;
+  padding: 15px 0;
+  border-bottom: 2px solid $light-gray;
+  cursor: pointer;
+  @include clearfix;
+  @include transition(.2s ease-in-out all)
+
+  &:first-child {
+    background-color: $light-gray;
+  }
+
+  &:last-child {
+    border: none;
+  }
+
+  &:hover {
+    background-color: $light-gray;
+  }
+
+  a {
+    color: $black;
+  }
+
+  span {
+    display: block;
+    float: left;
+    min-height: 1px;
+    padding: 0 15px 0;
+  }
+}
+
+.heros__list__item__name {
+  width: 30%;
+}
+
+.heros__list__item__description {
+  width: 50%;
+}
+
+.heros__list__item__update {
+  width: 20%;
+}
+
+.heros__nav {
+  display: block;
+  text-align: center;
+
+  a {
+    margin: 0 20px;
+    vertical-align: middle;
+    font-size: 20px;
+    color: $black;
+    @include transition(.3s all linear);
+    cursor: pointer;
+
+    &:hover {
+      color:  $primary;
+    }
+  }
+}

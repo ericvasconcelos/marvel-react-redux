@@ -1,0 +1,20 @@
+.header {
+  display: block;
+  height: 90px;
+  border-bottom: 1px solid $light-gray;
+  background-color: $black;
+}
+
+.header__logo {
+  display: block;
+  float: left;
+  width: auto;
+  height: 100%;
+  margin: 0 70px 0 20px;
+
+  img {
+    display: block;
+    width: auto;
+    height: 100%;
+  }
+}

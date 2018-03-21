@@ -1,0 +1,108 @@
+.hero {
+  display: block;
+  max-width: 900px;
+  width: 100%;
+  margin: 80px auto 40px;
+}
+
+.hero__infos {
+  display: block;
+  width: 100%;
+  margin-bottom: 60px;
+  @include clearfix;
+}
+
+.hero__img {
+  display: block;
+  float: left;
+  width: 30%;
+  min-height: 270px;
+  margin-right: 5%;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.hero__name {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.hero__description {
+  margin-bottom: 40px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.comics {
+  clear: both;
+  padding-top: 60px;
+  border-top: 2px solid $light-gray;
+}
+
+.comics__title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.comics__item {
+  width: 100%;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid $light-gray;
+  @include clearfix;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.comics__cover {
+  display: block;
+  float: left;
+  width: 22%;
+  min-height: 300px;
+  margin-right: 5%;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.comics__infos {
+  display: block;
+  float: left;
+  width: 73%;
+}
+
+.comics__infos__name {
+  float: left;
+  width: 70%;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.comics__infos__number {
+  float: left;
+  width: 30%;
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: right;
+  font-weight: 700;
+}
+
+.comics__infos__description {
+  clear: both;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
