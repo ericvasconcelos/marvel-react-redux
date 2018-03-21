@@ -1,28 +1,27 @@
 import axios from 'axios'
 import verifyStorage from '../utils/verify-storage'
 
-
-export const loadHero = (id) => {
+export const loadCharacters = (ind) => {
   const { public_key, hash } = verifyStorage()
 
-  return (dispatch) => {
-    const url = `http://gateway.marvel.com/v1/public/characters/${id}?ts=1&apikey=${public_key}&hash=${hash}`
+  return (dispatch, getState) => {
+    const storeLimit = getState().characters.limit
+    const storeOffset = getState().characters.offset
+    const storeTotal = getState().characters.total
+    var offset;
+
+    if (ind === 'prev') {
+      offset = storeOffset >= storeLimit ? (storeOffset - storeLimit) : 0;
+    } else if (ind === 'next') {
+      offset = storeOffset < (storeTotal - storeLimit) ? (storeOffset + storeLimit) : storeOffset;
+    } else {
+      offset = 0;
+    }
+
+    const url = `http://gateway.marvel.com/v1/public/characters?limit=30&offset=${offset}&ts=1&apikey=${public_key}&hash=${hash}`
     const request = axios.get(url)
       .then(res => {
-          return dispatch({ type: 'LOAD_HERO', payload: res.data.data.results[0] })
-        }
-      )
-  }
-}
-
-export const loadComics = (id) => {
-  const { public_key, hash } = verifyStorage()
-
-  return (dispatch) => {
-    const url = `http://gateway.marvel.com/v1/public/characters/${id}/comics?ts=1&apikey=${public_key}&hash=${hash}`
-    const request = axios.get(url)
-      .then(res => {
-          return dispatch({ type: 'LOAD_COMICS', payload: res.data.data.results })
+          dispatch({ type: 'LOAD_CHARACTERS', payload: res.data.data })
         }
       )
   }

@@ -1,93 +1,78 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { loadHero, loadComics } from './charactersActions'
+import { loadCharacters } from './charactersActions'
+import moment from 'moment'
 
 class Characters extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      hero: this.props.hero,
-      comics: this.props.comics,
-      loadingHero: true,
-      loadingComics: true
-    }
   }
 
   componentWillMount() {
-    this.props.loadHero(this.props.params.id)
-    this.props.loadComics(this.props.params.id)
+    this.props.loadCharacters()
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.hero.id !== nextState.hero.id) {
-      this.setState({
-        loadingHero: false
-      })
-      return true;
-    }
+  renderHerosList() {
+    let characters = this.props.characters;
 
-    if (nextProps.comics.length !== nextState.comics.length) {
-      this.setState({
-        loadingHero: false
-      })
-      return true;
-    }
-
-    return false;
+    return (
+      <ul className="heros__list">
+        <li className="heros__list__item">
+          <span className="heros__list__item__name">Nome</span>
+          <span className="heros__list__item__description">Descrição</span>
+          <span className="heros__list__item__update">Última atualização</span>
+        </li>
+        {
+          characters.map((hero, key) => {
+            return (
+              <li className="heros__list__item" key={key}>
+                <Link to={`/hero/${hero.id}`}>
+                  <span className="heros__list__item__name">{hero.name}</span>
+                  <span className="heros__list__item__description">{hero.description || '---'}</span>
+                  <span className="heros__list__item__update">{moment(hero.modified).format('DD/MM/YYYY')}</span>
+                </Link>
+              </li>
+            )
+          })
+        }
+      </ul>
+    )
   }
 
   render() {
-    let { hero, comics } = this.props;
-
     return (
-      <div className="hero">
-        { 
-          (!this.state.loadingHero || !this.state.loadingComics) ? (
-            <div>
-              <div className="hero__infos">
-                <div className="hero__img">
-                  <img src={ hero.thumbnail ? `${hero.thumbnail.path}.${hero.thumbnail.extension}` : ''} alt={hero.name} />
-                </div>
-                <h1 className="hero__name">{hero.name}</h1>
-                <p className="hero__description">{hero.description || ''}</p>
-                <a href="#/heros" className="hero__back-btn btn-main"><span>Voltar</span></a>
-              </div>
+      <div className="heros">
+        <h1 className="heros__title">Heróis</h1>
+        {this.renderHerosList()}
+        <nav className="heros__nav">
+          <a 
+            onClick={() => this.props.loadCharacters('prev')}
+            className="heros__nav__prev"
+            style={{display: (this.props.offset < this.props.limit ? 'none' : 'inline-block')}} >&larr; Anterior</a>
 
-              <div className="comics">
-                <h2 className="comics__title">Fascículos</h2>
-                { 
-                  comics.length ? (comics.map((comic, key) => {
-                    return (
-                      <div className="comics__item" key={key}>
-                        <div className="comics__cover">
-                          <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
-                        </div>
-                        <div className="comics__infos">
-                          <h3 className="comics__infos__name">{comic.title}</h3>
-                          <p className="comics__infos__number">número: {comic.id}</p>
-                          <p className="comics__infos__description">{comic.description}</p>
-                        </div>
-                      </div>
-                    )
-                  })) : <p>Nenhum fascículo encontrado</p>
-                }
-              </div>
-            </div>
-          ) : <div className="spinner"></div>
-        }
+          <a
+            onClick={() => this.props.loadCharacters('next')}
+            className="heros__nav__next"
+            style={{display: (this.props.offset >= (this.props.total - this.props.limit) ? 'none' : 'inline-block')}} >Próximo &rarr;</a>
+        </nav>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  hero: state.characters.hero,
-  comics: state.characters.comics
+  characters: state.characters.characters,
+  limit: state.characters.limit,
+  offset: state.characters.offset,
+  total: state.characters.total
 })
+
 const mapDispatchToProps = dispatch => bindActionCreators({
-  loadHero,
-  loadComics
+  loadCharacters
 }, dispatch)
+
 export default connect(mapStateToProps, mapDispatchToProps)(Characters)
+
+

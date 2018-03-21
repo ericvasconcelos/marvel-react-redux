@@ -34,7 +34,7 @@ export const generateHash = (e) => {
             type: 'GENERATE_HASH',
             payload: hash
           })
-          hashHistory.push('/heros')
+          hashHistory.push('/characters')
         }
       ).catch(error => {
         dispatch({ 
