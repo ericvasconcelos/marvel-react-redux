@@ -35,5 +35,7 @@ HEROI /#/characters
 ## Como funciona
 
 #1 - Após startar o projeto, acesse o site de devs da [Marvel](https://developer.marvel.com/) e crie seu cadastro para conseguir chaves necessárias.
+
 #2 - Acesse a url ```http://localhost:8080/#/``` em seu navegador de preferência e digite a sua chave privada e pública.
+
 #3 - Você será redirecionado para a lista de Super Herois da Marvel e poderá ver suas informações completas clicando em um deles.
