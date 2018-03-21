@@ -18,10 +18,17 @@ Para ativar o módulo de desenvolvimento:
 $ npm run dev
 ```
 
-Para ativar o módulo de produção: 
+Para realizar build do projeto: 
 
 ```npm
-$ npm run production
+$ npm run build
+```
+
+
+Para realizar build do projeto para a produção: 
+
+```npm
+$ npm run build:prod
 ```
 
 ## Rotas

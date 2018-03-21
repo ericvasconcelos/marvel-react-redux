@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './main/app'
+import App from './assets/js/main/app'
 import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
-import reducers from './main/reducers'
+import reducers from './assets/js/main/reducers'
 import promise from 'redux-promise'
 import multi from 'redux-multi'
 import thunk from 'redux-thunk'
-import './styles/main.scss'
+import './assets/scss/app.scss';
 
 
 if (process.env.NODE_ENV !== 'production') {
@@ -22,3 +22,4 @@ ReactDOM.render(
     <App />
   </Provider>
  , document.getElementById('app'))
+

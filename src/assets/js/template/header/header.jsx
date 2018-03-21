@@ -1,4 +1,4 @@
-import logo from '../../assets/images/marvel.svg'
+import logo from '../../../../assets/media/marvel.svg'
 
 import React from 'react'
 import Menu from '../menu/menu'

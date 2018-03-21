@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { md5 } from '../utils/md5'
 import { hashHistory } from 'react-router'
+import { md5 } from '../utils/md5'
 
 export const getPrivateKey = event => {
   return {

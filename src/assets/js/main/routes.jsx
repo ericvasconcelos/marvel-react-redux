@@ -2,8 +2,8 @@ import React from 'react'
 import { Router, Route, Redirect, hashHistory} from 'react-router'
 
 import Login from '../login/login'
-import Hero from '../hero/hero'
 import Characters from '../characters/characters'
+import Hero from '../hero/hero'
 
 export default props => (
   <Router history={hashHistory} onUpdate={() => window.scrollTo(0, 0)}>
