@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default props => (
   <ul className="menu">
@@ -6,4 +6,4 @@ export default props => (
       <a href="#/" className="menu__item__link">Login</a>
     </li>
   </ul>
-)
+);

@@ -2,11 +2,11 @@ const INITIAL_STATE = {
   characters: [],
   limit: 30,
   offset: 0,
-  total: 0
-}
+  total: 0,
+};
 
 export default (state = INITIAL_STATE, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'LOAD_CHARACTERS':
       return {
         ...state,
@@ -14,8 +14,8 @@ export default (state = INITIAL_STATE, action) => {
         limit: action.payload.limit,
         offset: action.payload.offset,
         total: action.payload.total,
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};

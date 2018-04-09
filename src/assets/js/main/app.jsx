@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import Routes from './routes'
-import Header from '../template/header/header'
+import React, { Component } from 'react';
+import Routes from './routes';
+import Header from '../template/header/header';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -13,8 +13,8 @@ class App extends Component {
         <Header />
         <Routes />
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

@@ -27,11 +27,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        include: /src/,
+        test: /\.js[x]?$/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
-      },
+        use: ['babel-loader']
+      }, 
       {
         test: /\.html$/,
         use: ['html-loader']
@@ -86,7 +85,7 @@ module.exports = {
   ],
 
   devServer: {
-    contentBase: path.resolve(__dirname, "./dist/assets/media"),
+    contentBase: path.resolve(__dirname, './dist/assets/media'),
     compress: true,
     port: 8080,
     stats: 'errors-only',
