@@ -16,22 +16,20 @@ export const generateHash = (e) => {
   e.preventDefault();
 
   return (dispatch, getState) => {
-    const private_key = getState().login.private_key;
-    const public_key = getState().login.public_key;
-    const hash = md5(`1${private_key}${public_key}`);
-    const access_hash = { public_key, hash };
+    const { privateKey, publicKey } = getState().login;
+    const hash = md5(`1${privateKey}${publicKey}`);
+    const accessHash = { publicKey, hash };
 
-
-    const url = `http://gateway.marvel.com/v1/public/characters?limit=1&offset=1&ts=1&apikey=${public_key}&hash=${hash}`;
-    const request = axios.get(url)
-      .then((res) => {
-        localStorage.setItem('access_hash', JSON.stringify(access_hash));
+    const url = `http://gateway.marvel.com/v1/public/characters?limit=1&offset=1&ts=1&apikey=${publicKey}&hash=${hash}`;
+    axios.get(url)
+      .then(() => {
+        localStorage.setItem('accessHash', JSON.stringify(accessHash));
         dispatch({
           type: 'GENERATE_HASH',
           payload: hash,
         });
         hashHistory.push('/characters');
-      }).catch((error) => {
+      }).catch(() => {
         dispatch({
           type: 'GENERATE_HASH_ERROR',
           payload: 'Suas chaves estão incorretas',

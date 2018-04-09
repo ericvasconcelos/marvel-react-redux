@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loadCharacters } from './charactersActions';
 import moment from 'moment';
+import { loadCharacters } from './charactersActions';
+
 
 class Characters extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
     this.props.loadCharacters();
   }
 
   renderHerosList() {
-    const characters = this.props.characters;
+    const { characters } = this.props;
 
     return (
       <ul className="heros__list">
@@ -25,8 +23,8 @@ class Characters extends Component {
           <span className="heros__list__item__update">Última atualização</span>
         </li>
         {
-          characters.map((hero, key) => (
-            <li className="heros__list__item" key={key}>
+          characters.map(hero => (
+            <li className="heros__list__item" key={hero.id}>
               <Link to={`/hero/${hero.id}`}>
                 <span className="heros__list__item__name">{hero.name}</span>
                 <span className="heros__list__item__description">{hero.description || '---'}</span>
@@ -45,19 +43,19 @@ class Characters extends Component {
         <h1 className="heros__title">Heróis</h1>
         {this.renderHerosList()}
         <nav className="heros__nav">
-          <a
+          <button
             onClick={() => this.props.loadCharacters('prev')}
             className="heros__nav__prev"
             style={{ display: (this.props.offset < this.props.limit ? 'none' : 'inline-block') }}
           >&larr; Anterior
-          </a>
+          </button>
 
-          <a
+          <button
             onClick={() => this.props.loadCharacters('next')}
             className="heros__nav__next"
             style={{ display: (this.props.offset >= (this.props.total - this.props.limit) ? 'none' : 'inline-block') }}
           >Próximo &rarr;
-          </a>
+          </button>
         </nav>
       </div>
     );
@@ -74,6 +72,14 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
   loadCharacters,
 }, dispatch);
+
+Characters.propTypes = {
+  loadCharacters: PropTypes.func.isRequired,
+  characters: PropTypes.arrayOf(PropTypes.object).isRequired,
+  limit: PropTypes.number.isRequired,
+  offset: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Characters);
 

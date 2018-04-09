@@ -12,6 +12,11 @@ module.exports = {
   },
   "rules": {
     "no-console": 0,
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "hrefLeft", "hrefRight", "to" ],
+      "aspects": [ "noHref", "invalidHref", "preferButton" ]
+    }]
   }
 };

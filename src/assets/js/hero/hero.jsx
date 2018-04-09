@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loadHero, loadComics } from './heroActions';
 import { hashHistory } from 'react-router';
+import { loadHero, loadComics } from './heroActions';
 
 class Hero extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      hero: this.props.hero,
-      comics: this.props.comics,
       loadingHero: true,
       loadingComics: true,
     };
@@ -53,14 +52,14 @@ class Hero extends Component {
                 </div>
                 <h1 className="hero__name">{hero.name}</h1>
                 <p className="hero__description">{hero.description || ''}</p>
-                <a onClick={hashHistory.goBack} className="hero__back-btn btn-main"><span>Voltar</span></a>
+                <button onClick={hashHistory.goBack} className="hero__back-btn btn-main"><span>Voltar</span></button>
               </div>
 
               <div className="comics">
                 <h2 className="comics__title">Fascículos</h2>
                 {
-                  comics.length ? (comics.map((comic, key) => (
-                    <div className="comics__item" key={key}>
+                  comics.length ? (comics.map(comic => (
+                    <div className="comics__item" key={comic.id}>
                       <div className="comics__cover">
                         <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
                       </div>
@@ -90,6 +89,15 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   loadHero,
   loadComics,
 }, dispatch);
+
+Hero.propTypes = {
+  loadHero: PropTypes.func.isRequired,
+  loadComics: PropTypes.func.isRequired,
+  hero: PropTypes.arrayOf(PropTypes.object).isRequired,
+  comics: PropTypes.arrayOf(PropTypes.object).isRequired,
+  params: PropTypes.objectOf(PropTypes.string).isRequired,
+};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Hero);
 

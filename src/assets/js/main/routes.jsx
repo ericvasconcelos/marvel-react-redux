@@ -5,7 +5,7 @@ import Login from '../login/login';
 import Characters from '../characters/characters';
 import Hero from '../hero/hero';
 
-export default props => (
+export default () => (
   <Router history={hashHistory} onUpdate={() => window.scrollTo(0, 0)}>
     <Route exact path="/" component={Login} />
     <Route exact path="/characters" component={Characters} />

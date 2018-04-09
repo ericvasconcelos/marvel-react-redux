@@ -1,10 +1,9 @@
-import logo from '../../../../assets/media/marvel.svg';
-
 import React from 'react';
+import logo from '../../../../assets/media/marvel.svg';
 import Menu from '../menu/menu';
 
 
-export default props => (
+export default () => (
   <header className="header">
     <a href="#/" className="header__logo">
       <img src={logo} alt="" />

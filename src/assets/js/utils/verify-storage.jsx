@@ -1,12 +1,15 @@
 export default () => {
-  if (localStorage.getItem('access_hash')) {
-    const access_hash = JSON.parse(localStorage.getItem('access_hash'));
-    var public_key = access_hash.public_key;
-    var hash = access_hash.hash;
+  if (!localStorage.getItem('accessHash')) {
+    return false;
   }
 
+  const {
+    publicKey,
+    hash,
+  } = JSON.parse(localStorage.getItem('accessHash'));
+
   return {
-    public_key,
+    publicKey,
     hash,
   };
 };

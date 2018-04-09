@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "npm run lint && webpack-dev-server",
+    "dev": "webpack-dev-server",
+    "dev:lint": "npm run lint && webpack-dev-server",
     "build": "webpack",
     "build:prod": "webpack -p",
     "lint": "eslint src/**/*.jsx --color --fix"
@@ -41,6 +42,7 @@
     "axios": "^0.18.0",
     "gulp-install": "^1.1.0",
     "moment": "^2.21.0",
+    "prop-types": "^15.6.1",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-redux": "^5.0.7",
